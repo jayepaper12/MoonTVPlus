@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
 
   schedule:
-    # 台灣時間每天上午 10:17
-    - cron: '17 2 * * *'
+    # 台灣時間每月 1 日上午 10:17
+    # GitHub Actions cron 使用 UTC，因此 02:17 UTC = 台灣 10:17
+    - cron: '17 2 1 * *'
 
 permissions:
   contents: write
