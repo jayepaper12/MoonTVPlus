@@ -1,0 +1,27 @@
+name: Sync MoonTVPlus Upstream
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # 台灣時間每天上午 10:17
+    - cron: '17 2 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync fork with upstream
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Checking upstream updates..."
+
+          gh api \
+            --method POST \
+            /repos/${{ github.repository }}/merge-upstream \
+            -f branch=main
